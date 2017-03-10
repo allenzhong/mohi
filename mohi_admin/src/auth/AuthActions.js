@@ -42,7 +42,7 @@ function requestAccessToken(status) {
 }
 
 function updateAccessToken(json) {
-  console.log('updated');
+  localStorage.setItem('access_token', json.access_token);
   return {
     type: UPDATE_ACCESS_TOKEN,
     access_token: json.access_token

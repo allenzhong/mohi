@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { fetchAccessTokenIfNeeded } from './AuthActions';
-import '../style/custom.css';
 
 
 class AuthLogin extends React.Component {
@@ -16,12 +15,12 @@ class AuthLogin extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log(this.state);
     const { store } = this.context;
     store.dispatch(fetchAccessTokenIfNeeded(this.state.username, this.state.password));
   }
 
   handleInputChange(e) {
-    console.log(e);
     const target = e.target;
     const value = e.target.value;
     const name = target.name;
@@ -29,29 +28,49 @@ class AuthLogin extends React.Component {
     this.setState({
       [name]: value
     })
+    console.log(this.state);
   }
 
   render() {
     return(
-      <div className="login">
-        <div className="login_wrapper">
-          <div className="animate form login_form">
-            <section className="login_content">
-              <form onSubmit={this.handleSubmit}>
-                <h1>Login Form</h1>
-                <div>
-                  <input name="username" type="text" className="form-control" placeholder="Username" required="" onChange={this.handleInputChange} value={this.state.username}/>
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-8">
+            <div className="card-group mb-0">
+              <div className="card p-2">
+                <div className="card-block">
+                  <form onSubmit={this.handleSubmit} >
+                    <h1>Login</h1>
+                    <p className="text-muted">Sign In to your account</p>
+                    <div className="input-group mb-1">
+                      <span className="input-group-addon"><i className="icon-user"></i></span>
+                      <input name="username" type="text" className="form-control" placeholder="Username" onChange={this.handleInputChange} value={this.state.username}/>
+                    </div>
+                    <div className="input-group mb-2">
+                      <span className="input-group-addon"><i className="icon-lock"></i></span>
+                      <input name="password" type="password" className="form-control" placeholder="Password" onChange={this.handleInputChange} value={this.state.password}/>
+                    </div>
+                    <div className="row">
+                      <div className="col-6">
+                        <button type="submit" className="btn btn-primary px-2">Login</button>
+                      </div>
+                      <div className="col-6 text-right">
+                        <button type="button" className="btn btn-link px-0">Forgot password?</button>
+                      </div>
+                    </div>
+                  </form>
                 </div>
-                <div>
-                  <input name="password" type="password" className="form-control" placeholder="Password" required="" onChange={this.handleInputChange} value={this.state.password}/>
+              </div>
+              <div className="card card-inverse card-primary py-3 hidden-md-down" style={{ width: 44 + '%' }}>
+                <div className="card-block text-center">
+                  <div>
+                    <h2>Sign up</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <button type="button" className="btn btn-primary active mt-1">Register Now!</button>
+                  </div>
                 </div>
-                <div>
-                  <button className='btn btn-default submit'>Log in</button>
-                  <a className="reset_pass" href="#">Lost your password?</a>
-                </div>
-                <div className="clearfix"></div>
-              </form>
-            </section>
+              </div>
+            </div>
           </div>
         </div>
       </div>

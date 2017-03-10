@@ -8,14 +8,14 @@ import { push, replace } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import store, { history } from './store/store.js';
 import AuthLogin from './auth/AuthLogin';
-import DashBoard from './dashboard/DashBoard';
+import Main from './dashboard/Main';
 
 
 const app_route = (
   <Provider store={store}>
     <Router history={history}>
       <Route path="/admin" component={App} onEnter={authenticate}>
-        <IndexRoute component={DashBoard} />
+        <IndexRoute component={Main} />
       </Route>
       <Route path="/auth" component={AuthLogin} />
     </Router>
@@ -23,12 +23,12 @@ const app_route = (
 )
 
 function authenticate(nextState, replace) {
-  let state = store.getState();
-  console.log(`state : ${state.auth.access_token}` );
-  if(!state.auth.access_token) {
+  console.log('authenticate');
+  if(!localStorage.getItem('access_token')) {
     replace('/auth');
   }
 }
+
 
 ReactDOM.render(
   app_route,

@@ -6,8 +6,7 @@ import * as actions from '../auth/AuthActions';
 class Entry extends React.Component {
   render() {
     return(
-      <div className='container'>
-        <header>MoHI Admin</header>
+      <div>
         { React.cloneElement(this.props.children, this.props) }
       </div>
     );
