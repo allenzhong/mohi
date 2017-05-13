@@ -4,11 +4,5 @@ export const MENUS = [
     href: '/admin',
     title: 'Dashboard',
     badge: 'NEW'
-  },
-  {
-    icon: 'icon-speedometer',
-    href: '/admin',
-    title: 'Dashboard',
-    badge: 'NEW'
   }
 ]
