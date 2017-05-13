@@ -61,9 +61,7 @@ function fetchAccessToken(username, password) {
     }
     return fetch(url, initParams)
       .then(response => {
-          console.log(response);
           let token = response.headers.get('access-token');
-          // let json = response.json();
           return dispatch(updateAccessToken({'access_token': token}));
       })
       .then((result) => {
@@ -74,8 +72,6 @@ function fetchAccessToken(username, password) {
 
 export function fetchAccessTokenIfNeeded(username, password) {
   return (dispatch, getState) => {
-    console.log(`Get state: ${JSON.stringify(getState())}`);
-
     return dispatch(fetchAccessToken(username, password));
   }
 }

@@ -15,7 +15,6 @@ class AuthLogin extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
     const { store } = this.context;
     store.dispatch(fetchAccessTokenIfNeeded(this.state.username, this.state.password));
   }
@@ -28,7 +27,6 @@ class AuthLogin extends React.Component {
     this.setState({
       [name]: value
     })
-    console.log(this.state);
   }
 
   render() {
