@@ -6,7 +6,7 @@ export const SIGN_OUT = 'SIGN_OUT';
 export const REQUEST_ACCESS_TOKEN = 'REQUEST_ACCESS_TOKEN';
 export const UPDATE_ACCESS_TOKEN = 'UPDATE_ACCESS_TOKEN';
 
-const url = 'http://localhost:5100/auth/sign_in';
+const url = '/auth/sign_in';
 const myHeaders = new Headers();
 myHeaders.append('Content-Type', 'application/json; charset=utf-8');
 
@@ -65,7 +65,12 @@ function fetchAccessToken(username, password) {
           return dispatch(updateAccessToken({'access_token': token}));
       })
       .then((result) => {
-        dispatch(push('/admin'));
+        if (result.access_token == null){
+          //here should show alerts or errors in front-end page
+          dispatch(push('/auth'))
+        } else {
+          dispatch(push('/admin'));
+        }
       });
   }
 }
